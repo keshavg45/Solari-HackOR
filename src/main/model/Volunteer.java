@@ -1,14 +1,27 @@
 package model;
 
+import java.util.List;
+
 public class Volunteer {
 
     private int VolunteerID;
     private String name;
     private int age;
+    private String description;
+    private List<String> tags;
 
-    public Volunteer(String name, int age) {
+    public Volunteer(String name, int age, String description) {
         this.name = name;
         this.age = age;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getVolunteerID() {
@@ -33,5 +46,15 @@ public class Volunteer {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void addTags(String tag) {
+        if (!tags.contains(tag)) {
+            tags.add(tag);
+        }
     }
 }
