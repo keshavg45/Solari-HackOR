@@ -2,7 +2,7 @@ package model;
 
 public class JobPosting {
 
-    private int JOBid;
+    private int JobID;
     private String role;
     private String company;
     private String location;
@@ -15,12 +15,12 @@ public class JobPosting {
         this.status = status;
     }
 
-    public int getJOBid() {
-        return JOBid;
+    public int getJobID() {
+        return JobID;
     }
 
-    public void setJOBid(int JOBid) {
-        this.JOBid = JOBid;
+    public void setJobID(int jobID) {
+        this.JobID = jobID;
     }
 
     public String getRole() {
