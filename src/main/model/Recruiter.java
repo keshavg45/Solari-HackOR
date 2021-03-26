@@ -1,14 +1,38 @@
 package model;
 
+import java.util.List;
+
 public class Recruiter {
 
     private int RecruiterID;
     private String name;
     private String company;
+    private List<String> tags;
+    private List<JobPosting> postings;
 
     public Recruiter(String name, String company) {
         this.company = company;
         this.name = name;
+    }
+
+    public List<JobPosting> getPostings() {
+        return postings;
+    }
+
+    public void addPosting(JobPosting posting) {
+        if (!postings.contains(posting)) {
+            postings.add(posting);
+        }
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void addTags(String tag) {
+        if (!tags.contains(tag)) {
+            tags.add(tag);
+        }
     }
 
     public int getRecruiterID() {
