@@ -13,7 +13,6 @@ public class DBConnection {
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e+"");
         }
-
         return con;
     }
 }
