@@ -47,6 +47,7 @@ public class RecruiterPageController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        DBConnection.disconnect(myConnection);
     }
 
     public void moveToPageOne(ActionEvent event) throws IOException {
@@ -55,6 +56,7 @@ public class RecruiterPageController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        DBConnection.disconnect(myConnection);
     }
 
 }

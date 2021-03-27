@@ -15,4 +15,14 @@ public class DBConnection {
         }
         return con;
     }
+
+    public static void disconnect(Connection con){
+        if (con != null){
+            try{
+                con.close();
+            } catch (SQLException e){
+                System.out.println(e);
+            }
+        }
+    }
 }

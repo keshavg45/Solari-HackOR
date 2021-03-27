@@ -1,7 +1,6 @@
 package ui.volunteerpage;
 
 import SQL.DBConnection;
-import SQL.PopulateDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class VolunteerPageController {
 
@@ -31,14 +29,14 @@ public class VolunteerPageController {
         } else if (event.getSource() == conti) {
 
             System.out.println("test");
-            try {
-                PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText(), describe.getText());
-                System.out.println(name.getText());
-                System.out.println(age.getText());
-                System.out.println(describe.getText());
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+//            try {
+//                //PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText(), describe.getText());
+//                System.out.println(name.getText());
+//                System.out.println(age.getText());
+//                System.out.println(describe.getText());
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
 
             moveToPageOne(event);
         }
