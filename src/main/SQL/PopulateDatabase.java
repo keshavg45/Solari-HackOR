@@ -25,6 +25,7 @@ public class PopulateDatabase {
 //            RecruiterSearch(myConnection, "1");
 //            VolunteerRequest(myConnection,"1", "3");
 //            RecruiterAssignJob(myConnection, "1", "2");
+            VolunteerViewAssigned(myConnection, "2");
         } catch (SQLException e){
             System.out.print(e);
         }
@@ -144,6 +145,32 @@ public class PopulateDatabase {
         Statement myStatement = con.createStatement();
         String sql = "INSERT INTO JobAssigned (jobID, volunteerID) VALUES (" + arg1 + ", " + arg2+ ")";
         int rs = myStatement.executeUpdate(sql);
+    }
+
+    public static void VolunteerViewRequests(Connection con, String arg1) throws SQLException{
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT JobPostings.jobTitle, JobPostings.companyName, jobPostings.location FROM JobRequests, JobPostings WHERE JobRequests.jobID = JobPostings.jobID AND JobRequests.volunteerID = " + arg1;
+        ResultSet rs = myStatement.executeQuery(sql);
+        System.out.println("Applied Jobs");
+        while (rs.next()){
+            System.out.println("Job Title: " + rs.getString(1));
+            System.out.println("Company Name: " + rs.getString(2));
+            System.out.println("Location: " + rs.getString(3));
+            System.out.println("");
+        }
+    }
+
+    public static void VolunteerViewAssigned(Connection con, String arg1) throws SQLException{
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT JobPostings.jobTitle, JobPostings.companyName, jobPostings.location FROM JobAssigned, JobPostings WHERE JobAssigned.jobID = JobPostings.jobID AND JobAssigned.volunteerID = " + arg1;
+        ResultSet rs = myStatement.executeQuery(sql);
+        System.out.println("Assigned Jobs");
+        while (rs.next()){
+            System.out.println("Job Title: " + rs.getString(1));
+            System.out.println("Company Name: " + rs.getString(2));
+            System.out.println("Location: " + rs.getString(3));
+            System.out.println("");
+        }
     }
 
 //    SELECT Volunteer.volunteerID, Volunteer.volunteerName, Volunteer.age, Volunteer.description
