@@ -15,19 +15,30 @@ public class RecruiterPageOneController {
     public Button createJob;
     public Button manageJob;
     public Button closedJob;
+    public Button back;
 
     public void categorySelected(ActionEvent event) throws IOException {
         if (event.getSource() == createJob) {
-            switchScenes(event, "createJob");
+            switchScenes(event, "createjob");
         } else if (event.getSource() == manageJob) {
-            switchScenes(event, "manageJob");
+            switchScenes(event, "managejob");
         } else if (event.getSource() == closedJob) {
-            switchScenes(event, "closedJob");
+            switchScenes(event, "closedjob");
+        } else  if (event.getSource() == back) {
+            backButtonClicked(event);
         }
     }
 
     public void switchScenes(ActionEvent event, String string) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/" + string + "/" + string +".fxml"));
+        Scene scene = new Scene(parent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void backButtonClicked(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpage.fxml"));
         Scene scene = new Scene(parent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
