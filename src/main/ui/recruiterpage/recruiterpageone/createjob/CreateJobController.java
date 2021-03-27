@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,6 +26,8 @@ public class CreateJobController {
 
     public Button addJob;
     public Button back;
+
+    public Label companyLabel;
 
     Connection myConnection = DBConnection.connect();
 
@@ -56,5 +59,9 @@ public class CreateJobController {
         List<String> tagsList = Arrays.asList(entry.split("\\s*,\\s*"));
         System.out.println(tagsList);
         return tagsList;
+    }
+
+    public void setTopLabel(String text) {
+        companyLabel.setText(text);
     }
 }

@@ -6,7 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import ui.recruiterpage.recruiterpageone.closedjob.ClosedJobController;
+import ui.recruiterpage.recruiterpageone.createjob.CreateJobController;
+import ui.recruiterpage.recruiterpageone.managejob.ManageJobController;
 
 import java.io.IOException;
 
@@ -16,6 +20,8 @@ public class RecruiterPageOneController {
     public Button manageJob;
     public Button closedJob;
     public Button back;
+
+    public Label companyLabel;
 
     public void categorySelected(ActionEvent event) throws IOException {
         if (event.getSource() == createJob) {
@@ -29,9 +35,28 @@ public class RecruiterPageOneController {
         }
     }
 
+//    public void switchScenes(ActionEvent event, String string) throws IOException {
+//        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/" + string + "/" + string +".fxml"));
+//        Scene scene = new Scene(parent);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(scene);
+//        window.show();
+//    }
+
     public void switchScenes(ActionEvent event, String string) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/" + string + "/" + string +".fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/recruiterpage/recruiterpageone/" + string + "/" + string +".fxml"));
+        Parent courseParent = loader.load();
+        if (string == "createjob") {
+            CreateJobController createController = (CreateJobController)loader.getController();
+            createController.setTopLabel(companyLabel.getText());
+        } else if (string == "managejob") {
+            ManageJobController manageController = (ManageJobController)loader.getController();
+            manageController.setTopLabel(companyLabel.getText());
+        }  else if (string == "closedjob") {
+            ClosedJobController closedController = (ClosedJobController)loader.getController();
+            closedController.setTopLabel(companyLabel.getText());
+        }
+        Scene scene = new Scene(courseParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
@@ -43,5 +68,9 @@ public class RecruiterPageOneController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+    }
+
+    public void setTopLabel(String text) {
+        companyLabel.setText(text);
     }
 }

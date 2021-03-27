@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class ManageJobController {
 
     public Button back;
+    public Label companyLabel;
 
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
@@ -26,5 +28,9 @@ public class ManageJobController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+    }
+
+    public void setTopLabel(String text) {
+        companyLabel.setText(text);
     }
 }
