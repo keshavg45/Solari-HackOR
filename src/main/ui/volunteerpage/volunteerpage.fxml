@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="125.0" fitWidth="125.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/v.png" />
+                  <Image url="@v.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="192.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volunteer!">

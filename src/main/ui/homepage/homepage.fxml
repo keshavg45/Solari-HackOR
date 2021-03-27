@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #2B9C7A;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.homepage.HomePageController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -16,12 +15,12 @@
                   <Font name="Book Antiqua" size="50.0" />
                </font>
             </Text>
-            <Button fx:id="volunteerButton" layoutX="313.0" layoutY="368.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="310.0" text="Volunteer">
+            <Button fx:id="volunteerButton" layoutX="313.0" layoutY="368.0" mnemonicParsing="false" onAction="#categorySelected" prefHeight="44.0" prefWidth="310.0" text="Volunteer">
                <font>
                   <Font name="Book Antiqua" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="recruiterButton" layoutX="313.0" layoutY="463.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="310.0" text="Recruiter">
+            <Button fx:id="recruiterButton" layoutX="313.0" layoutY="463.0" mnemonicParsing="false" onAction="#categorySelected" prefHeight="44.0" prefWidth="310.0" text="Recruiter">
                <font>
                   <Font name="Book Antiqua" size="24.0" />
                </font>
