@@ -19,8 +19,11 @@ public class PopulateDatabase {
 
     public static void PopulateRecruiter(Connection con, String arg1, String arg2) throws SQLException{
         Statement myStatement = con.createStatement();
-        String sql = "INSERT INTO Recruiter (recruiterName, companyName) VALUES ('" + arg1 + "', '" + arg2 + "')";
-        //System.out.println(sql);
+        int tableSize = CountTuples(con, "Recruiter");
+        tableSize++;
+        String sql = "INSERT INTO Recruiter (recruiterID, recruiterName, companyName) VALUES (" + tableSize + ",'" +
+                arg1 + "','" + arg2 + "')";
+        System.out.println(sql);
         int rs = myStatement.executeUpdate(sql);
 
         System.out.println("Recruiter Table has been populated");
@@ -30,8 +33,9 @@ public class PopulateDatabase {
         Statement myStatement = con.createStatement();
         int tableSize = CountTuples(con, "Volunteer");
         tableSize++;
-        String sql = "INSERT INTO Volunteer (volunteerID, volunteerName, age) VALUES (" + tableSize + ",'" + arg1 + "'," + arg2 + ")";
-        //System.out.println(sql);
+        String sql = "INSERT INTO Volunteer (volunteerID, volunteerName, age) VALUES (" + tableSize + ",'" + arg1 + "',"
+                + arg2 + ")";
+        System.out.println(sql);
         int rs = myStatement.executeUpdate(sql);
 
         System.out.println("Volunteer Table has been populated");
