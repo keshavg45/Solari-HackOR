@@ -30,27 +30,27 @@
          </children></AnchorPane>
       <AnchorPane layoutX="20.0" layoutY="219.0" prefHeight="251.0" prefWidth="415.0" style="-fx-background-color: #637CD6;">
          <children>
-            <ChoiceBox fx:id="searchByRegion" layoutX="27.0" layoutY="54.0" prefWidth="150.0" />
+            <ChoiceBox layoutX="27.0" layoutY="54.0" prefWidth="150.0" />
             <Text fill="WHITE" layoutX="27.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Region" />
-            <ChoiceBox fx:id="searchByCompany" layoutX="238.0" layoutY="54.0" prefWidth="150.0" />
+            <ChoiceBox layoutX="238.0" layoutY="54.0" prefWidth="150.0" />
             <Text fill="WHITE" layoutX="238.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Company" />
-            <ChoiceBox fx:id="searchByJobTitle" layoutX="27.0" layoutY="124.0" prefWidth="150.0" />
+            <ChoiceBox layoutX="27.0" layoutY="124.0" prefWidth="150.0" />
             <Text fill="WHITE" layoutX="27.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Job Title" />
-            <ChoiceBox fx:id="searchByTag" layoutX="238.0" layoutY="124.0" prefWidth="150.0" />
-            <Text fill="WHITE" layoutX="238.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Tag" />
-            <Button fx:id="search" layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3555FF;" text="Search">
+            <ChoiceBox layoutX="238.0" layoutY="124.0" prefWidth="150.0" />
+            <Text fill="WHITE" layoutX="238.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Tags" />
+            <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3555FF;" text="Search">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="requestedJobs" layoutX="91.0" layoutY="524.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="50.0" prefWidth="273.0" text="Requested Jobs">
+      <Button fx:id="requested" layoutX="91.0" layoutY="524.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="50.0" prefWidth="273.0" text="Requested Jobs">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="assignedJobs" layoutX="91.0" layoutY="597.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="50.0" prefWidth="273.0" text="Assigned Jobs">
+      <Button fx:id="assigned" layoutX="91.0" layoutY="597.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="50.0" prefWidth="273.0" text="Assigned Jobs">
          <font>
             <Font size="20.0" />
          </font>
