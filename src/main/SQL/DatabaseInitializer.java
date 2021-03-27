@@ -22,7 +22,7 @@ public class DatabaseInitializer {
 
     public static void InitializeRecruiter(Connection con) throws SQLException{
         Statement myStatement = con.createStatement();
-        String sql = "CREATE TABLE Recruiter(recruiterName text, companyName text)";
+        String sql = "CREATE TABLE Recruiter(recruiterID int ,recruiterName text, companyName text)";
         int rs = myStatement.executeUpdate(sql);
 
         System.out.println("Recruiter Table has been Initialized");
