@@ -2,7 +2,9 @@ package ui.volunteerpage.volunteerpageone;
 
 import SQL.DBConnection;
 import SQL.PopulateDatabase;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
 
 public class VolunteerPageOneController {
 
+    String st[] = { "California", "Vancouver", "Delhi", "Paris" };
     public ChoiceBox searchByRegion = new ChoiceBox();
     public ChoiceBox searchByCompany = new ChoiceBox();
     public ChoiceBox searchByJobTitle = new ChoiceBox();
@@ -26,6 +29,13 @@ public class VolunteerPageOneController {
     public Button assigned;
 
     Connection myConnection = DBConnection.connect();
+
+    @FXML
+    private void initialize() {
+        searchByRegion.setItems(FXCollections.observableArrayList(st));
+
+    }
+
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == requested) {
 //            System.out.println("list of requested jobs");

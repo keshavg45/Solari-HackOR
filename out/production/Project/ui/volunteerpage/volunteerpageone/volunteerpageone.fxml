@@ -38,7 +38,7 @@
             <Text fill="WHITE" layoutX="27.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Job Title" />
             <ChoiceBox fx:id="searchByTag" layoutX="238.0" layoutY="124.0" prefWidth="150.0" />
             <Text fill="WHITE" layoutX="238.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Tags" />
-            <Button fx:id="search" layoutX="159.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3555FF;" text="Search">
+            <Button fx:id="search" layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3555FF;" text="Search">
                <font>
                   <Font size="18.0" />
                </font>
