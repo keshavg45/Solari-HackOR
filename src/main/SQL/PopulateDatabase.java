@@ -235,7 +235,9 @@ public class PopulateDatabase {
         return tagCategories;
     }
 
-    public static void addJobTags(Connection con, List<String> arg1, String arg2) throws SQLException{
+    public static void addJobTags(Connection con, List<String> arg1, String arg2) throws SQLException {
+        Statement myStatement = con.createStatement();
+
         for (String temp : arg1) {
             System.out.println(temp);
             int tagID = 0;
@@ -245,10 +247,13 @@ public class PopulateDatabase {
                 tableSize++;
                 String sql = "INSERT INTO TagsName(tagID, tagName) VALUES ("+ tableSize + ", '"+ temp + "')";
                 tagID = tableSize;
+                int rs = myStatement.executeUpdate(sql);
                 System.out.println(sql);
             }
 
             String sql = "INSERT INTO JobTags (jobID, tagID) VALUES (" + arg2 + ", " + tagID + ")";
+            int rs = myStatement.executeUpdate(sql);
+
             System.out.println(sql);
         }
     }

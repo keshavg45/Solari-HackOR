@@ -8,7 +8,7 @@ public class JobPosting {
     private String location;
     private boolean status;
 
-    public JobPosting(String role, String company,String location, boolean status) {
+    public JobPosting(String role, String company, String location, boolean status) {
         this.role = role;
         this.company = company;
         this.location = location;
