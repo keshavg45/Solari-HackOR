@@ -15,7 +15,6 @@ public class DatabaseInitializer {
             InitializeJobAssigned(myConnection);
             InitializeTagsName(myConnection);
             InitializeJobTags(myConnection);
-
         } catch (SQLException e){
             System.out.print(e);
         }
