@@ -61,6 +61,7 @@ public class RecruiterPageController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        // TODO
         DBConnection.disconnect(myConnection);
     }
 
