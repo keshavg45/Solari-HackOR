@@ -27,11 +27,10 @@ public class RecruiterPageOneController {
     }
 
     public void switchScenes(ActionEvent event, String string) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/recruiterpage/recruiterpageone/" + string + "/" + string + ".fxml"));
-        Parent courseParent = loader.load();
-        Scene courseScene = new Scene(courseParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(courseScene);
+        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/" + string + "/" + string +".fxml"));
+        Scene scene = new Scene(parent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
         window.show();
     }
 }
