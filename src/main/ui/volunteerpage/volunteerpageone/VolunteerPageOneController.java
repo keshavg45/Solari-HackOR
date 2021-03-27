@@ -15,10 +15,10 @@ import java.sql.SQLException;
 
 public class VolunteerPageOneController {
 
-    String st1[] = { "California", "Vancouver", "Delhi", "Paris" };
-    String st2[] = { "Google", "Amazon", "Oracle", "Subway"};
-    String st3[] = { "Software Developer", "Barista", "Teacher"};
-    String st4[] = { "Computers", "IT", "Health"};
+//    String st1[] = { "California", "Vancouver", "Delhi", "Paris" };
+//    String st2[] = { "Google", "Amazon", "Oracle", "Subway"};
+//    String st3[] = { "Software Developer", "Barista", "Teacher"};
+//    String st4[] = { "Computers", "IT", "Health"};
 
     public ChoiceBox searchByRegion = new ChoiceBox();
     public ChoiceBox searchByCompany = new ChoiceBox();
@@ -36,6 +36,20 @@ public class VolunteerPageOneController {
 
     @FXML
     private void initialize() {
+        String st1[] = new String[0];
+        String st2[] = new String[0];
+        String st3[] = new String[0];
+        String st4[] = new String[0];
+
+        try {
+            st1 = PopulateDatabase.getRegions(myConnection).toArray(new String[0]);
+            st2 = PopulateDatabase.getCompanies(myConnection).toArray(new String[0]);
+            st3 = PopulateDatabase.getJobTitles(myConnection).toArray(new String[0]);
+            st4 = PopulateDatabase.getTags(myConnection).toArray(new String[0]);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         searchByRegion.setItems(FXCollections.observableArrayList(st1));
         searchByJobTitle.setItems(FXCollections.observableArrayList(st3));
         searchByCompany.setItems(FXCollections.observableArrayList(st2));
