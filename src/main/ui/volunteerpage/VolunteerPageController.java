@@ -1,5 +1,7 @@
 package ui.volunteerpage;
 
+import SQL.DBConnection;
+import SQL.PopulateDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class VolunteerPageController {
 
@@ -19,10 +23,23 @@ public class VolunteerPageController {
     public Button conti;
     public Button back;
 
+    Connection myConnection = DBConnection.connect();
+
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
             backButtonClicked(event);
         } else if (event.getSource() == conti) {
+
+            System.out.println("test");
+            try {
+                PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText(), describe.getText());
+                System.out.println(name.getText());
+                System.out.println(age.getText());
+                System.out.println(describe.getText());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
             moveToPageOne(event);
         }
     }
@@ -34,7 +51,6 @@ public class VolunteerPageController {
         window.setScene(scene);
         window.show();
     }
-
 
     public void moveToPageOne(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/ui/volunteerpage/volunteerpageone/volunteerpageone.fxml"));
