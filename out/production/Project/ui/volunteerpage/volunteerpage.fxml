@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.volunteerpage.VolunteerPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.volunteerpage.VolunteerPageController">
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="900.0" style="-fx-background-color: #2B9C7A;">
          <children>
@@ -48,7 +48,7 @@
                </font>
             </Text>
             <TextField fx:id="describe" layoutX="249.0" layoutY="247.0" prefHeight="29.0" prefWidth="208.0" promptText="Business Grad from UoT" />
-            <Button fx:id="conti" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" onAction="#moveToPageOne" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #3555FF;" text="Continue">
+            <Button fx:id="conti" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #3555FF;" text="Continue">
                <font>
                   <Font name="Book Antiqua" size="13.0" />
                </font>

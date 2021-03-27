@@ -1,5 +1,7 @@
 package ui.recruiterpage;
 
+import SQL.DBConnection;
+import SQL.PopulateDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class RecruiterPageController {
 
@@ -18,10 +22,21 @@ public class RecruiterPageController {
     public Button conti;
     public Button back;
 
+    Connection myConnection = DBConnection.connect();
+
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
             backButtonClicked(event);
         } else if (event.getSource() == conti) {
+
+            try {
+                PopulateDatabase.PopulateRecruiter(myConnection, name.getText(), companyname.getText());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        //    System.out.println(name.getText());
+        //    System.out.println(companyname.getText());
             moveToPageOne(event);
         }
     }
@@ -41,4 +56,5 @@ public class RecruiterPageController {
         window.setScene(scene);
         window.show();
     }
+
 }
