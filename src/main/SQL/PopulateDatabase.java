@@ -10,8 +10,8 @@ public class PopulateDatabase {
         Connection myConnection = DBConnection.connect();
         try {
             //PopulateRecruiter(myConnection, "James Johnson", "Miami Heat");
-            InsertVolunteer(myConnection, "Louis Hamilton", "7");
-            InsertVolunteer(myConnection, "Toto Wolff", "33");
+            InsertVolunteer(myConnection, "Louis Hamilton", "7", "World Champion");
+            InsertVolunteer(myConnection, "Toto Wolff", "33", "Big Boss");
         } catch (SQLException e){
             System.out.print(e);
         }
@@ -29,12 +29,12 @@ public class PopulateDatabase {
         System.out.println("Recruiter Table has been populated");
     }
 
-    public static void InsertVolunteer(Connection con, String arg1, String arg2) throws SQLException{
+    public static void InsertVolunteer(Connection con, String arg1, String arg2, String arg3) throws SQLException{
         Statement myStatement = con.createStatement();
         int tableSize = CountTuples(con, "Volunteer");
         tableSize++;
-        String sql = "INSERT INTO Volunteer (volunteerID, volunteerName, age) VALUES (" + tableSize + ",'" + arg1 + "',"
-                + arg2 + ")";
+        String sql = "INSERT INTO Volunteer (volunteerID, volunteerName, age, description) VALUES (" + tableSize + ",'" + arg1 + "',"
+                + arg2 + ",'" + arg3 + "')";
         System.out.println(sql);
         int rs = myStatement.executeUpdate(sql);
 

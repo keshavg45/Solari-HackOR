@@ -32,9 +32,10 @@ public class VolunteerPageController {
 
             System.out.println("test");
             try {
-                PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText());
+                PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText(), describe.getText());
                 System.out.println(name.getText());
                 System.out.println(age.getText());
+                System.out.println(describe.getText());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
