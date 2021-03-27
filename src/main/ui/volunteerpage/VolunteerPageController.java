@@ -1,6 +1,7 @@
 package ui.volunteerpage;
 
 import SQL.DBConnection;
+import SQL.PopulateDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class VolunteerPageController {
 
@@ -29,14 +31,14 @@ public class VolunteerPageController {
         } else if (event.getSource() == conti) {
 
             System.out.println("test");
-//            try {
-//                //PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText(), describe.getText());
-//                System.out.println(name.getText());
-//                System.out.println(age.getText());
-//                System.out.println(describe.getText());
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
+            try {
+                PopulateDatabase.InsertVolunteer(myConnection, name.getText(), age.getText(), describe.getText());
+                System.out.println(name.getText());
+                System.out.println(age.getText());
+                System.out.println(describe.getText());
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
 
             moveToPageOne(event);
         }
@@ -48,6 +50,7 @@ public class VolunteerPageController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        DBConnection.disconnect(myConnection);
     }
 
     public void moveToPageOne(ActionEvent event) throws IOException {
@@ -56,5 +59,6 @@ public class VolunteerPageController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        DBConnection.disconnect(myConnection);
     }
 }
