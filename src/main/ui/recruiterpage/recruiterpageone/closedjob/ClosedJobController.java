@@ -1,4 +1,4 @@
-package ui.recruiterpage.recruiterpageone.createjob;
+package ui.recruiterpage.recruiterpageone.closedjob;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -6,25 +6,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CreateJobController {
+public class ClosedJobController {
 
-    public TextField jobTitle;
-    public TextField loc;
-    public TextField tag;
-
-    public Button addJob;
     public Button back;
 
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
             backButtonClicked(event);
-        } else if (event.getSource() == addJob) {
-            System.out.println("job added");
         }
     }
 
