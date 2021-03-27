@@ -27,15 +27,22 @@ public class PopulateDatabase {
 //            RecruiterSearch(myConnection, "1");
 //            VolunteerRequest(myConnection,"1", "3");
 //            RecruiterAssignJob(myConnection, "1", "2");
-            VolunteerViewAssigned(myConnection, "2");
-            List<String> jobTitles = getJobTitles(myConnection);
-            System.out.println(jobTitles);
-            List<String> companies = getCompanies(myConnection);
-            System.out.println(companies);
-            List<String> regions = getRegions(myConnection);
-            System.out.println(regions);
-            List<String> tagCategories = getTags(myConnection);
-            System.out.println(tagCategories);
+//            VolunteerViewAssigned(myConnection, "2");
+//            List<String> jobTitles = getJobTitles(myConnection);
+//            System.out.println(jobTitles);
+//            List<String> companies = getCompanies(myConnection);
+//            System.out.println(companies);
+//            List<String> regions = getRegions(myConnection);
+//            System.out.println(regions);
+//            List<String> tagCategories = getTags(myConnection);
+//            System.out.println(tagCategories);
+//            int tagID = getTagNumber(myConnection, "Salary");
+//            System.out.println(tagID);
+            List<String> JobTags = new ArrayList<String>();
+            JobTags.add("Fashion");
+            JobTags.add("Health");
+            addJobTags(myConnection, JobTags, "2");
+
 
         } catch (SQLException e){
             System.out.print(e);
@@ -226,6 +233,36 @@ public class PopulateDatabase {
             tagCategories.add(rs.getString(1));
         }
         return tagCategories;
+    }
+
+    public static void addJobTags(Connection con, List<String> arg1, String arg2) throws SQLException{
+        for (String temp : arg1) {
+            System.out.println(temp);
+            int tagID = 0;
+            tagID = getTagNumber(con, temp);
+            if (tagID == -1){
+                int tableSize = CountTuples(con, "TagsName");
+                tableSize++;
+                String sql = "INSERT INTO TagsName(tagID, tagName) VALUES ("+ tableSize + ", '"+ temp + "')";
+                tagID = tableSize;
+                System.out.println(sql);
+            }
+
+            String sql = "INSERT INTO JobTags (jobID, tagID) VALUES (" + arg2 + ", " + tagID + ")";
+            System.out.println(sql);
+        }
+    }
+
+
+    public static int getTagNumber(Connection con, String arg1) throws SQLException {
+        int tagID = -1;
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT TagsName.tagID FROM TagsName WHERE tagName = '" + arg1 + "'";
+        ResultSet rs = myStatement.executeQuery(sql);
+        while(rs.next()){
+            tagID = rs.getInt(1);
+        }
+        return tagID;
     }
 
     public static int CountTuples(Connection con, String arg1){
