@@ -56,6 +56,8 @@ public class PopulateDatabase {
     }
 
     public static void AddJobPosting(Connection con, String arg1, String arg2, String arg3) throws SQLException{
+        // TODO Make sure that the table name lines up with GUI entry fields
+
         Statement myStatement = con.createStatement();
         int tableSize = CountTuples(con, "JobPostings");
         tableSize++;

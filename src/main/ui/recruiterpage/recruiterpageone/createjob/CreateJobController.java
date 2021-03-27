@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 public class CreateJobController {
 
@@ -32,6 +34,7 @@ public class CreateJobController {
         } else if (event.getSource() == addJob) {
             try {
                 PopulateDatabase.AddJobPosting(myConnection, jobTitle.getText(), loc.getText(), tag.getText());
+                createTagsList(tag.getText());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -40,11 +43,18 @@ public class CreateJobController {
     }
 
     public void backButtonClicked(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/recruiterpageone.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/" +
+                "recruiterpageone.fxml"));
         Scene scene = new Scene(parent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
         DBConnection.disconnect(myConnection);
+    }
+
+    public List<String> createTagsList(String entry) {
+        List<String> tagsList = Arrays.asList(entry.split("\\s*,\\s*"));
+        System.out.println(tagsList);
+        return tagsList;
     }
 }
