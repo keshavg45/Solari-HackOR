@@ -18,6 +18,14 @@ public class RecruiterPageController {
     public Button conti;
     public Button back;
 
+    public void buttonClick(ActionEvent event) throws IOException {
+        if (event.getSource() == back) {
+            backButtonClicked(event);
+        } else if (event.getSource() == conti) {
+            moveToPageOne(event);
+        }
+    }
+
     public void backButtonClicked(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/ui/homepage/homepage.fxml"));
         Scene scene = new Scene(parent);
@@ -26,10 +34,11 @@ public class RecruiterPageController {
         window.show();
     }
 
-    public void buttonClick(ActionEvent event) throws IOException {
-        if (event.getSource() == back) {
-            backButtonClicked(event);
-        }
+    public void moveToPageOne(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/ui/recruiterpage/recruiterpageone/recruiterpageone.fxml"));
+        Scene scene = new Scene(parent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
-
 }

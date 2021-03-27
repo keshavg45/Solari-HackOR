@@ -35,7 +35,6 @@ public class VolunteerPageController {
         window.show();
     }
 
-
     public void moveToPageOne(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/ui/volunteerpage/volunteerpageone/volunteerpageone.fxml"));
         Scene scene = new Scene(parent);

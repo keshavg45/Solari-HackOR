@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="125.0" fitWidth="125.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@r.png" />
+                  <Image url="@recruiterpageone/r.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="192.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recruit!">
@@ -42,7 +42,7 @@
                </font>
             </Text>
             <TextField fx:id="companyname" layoutX="249.0" layoutY="227.0" prefHeight="29.0" prefWidth="208.0" promptText="Asana" />
-            <Button fx:id="conti" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #3555FF;" text="Continue">
+            <Button fx:id="conti" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #3555FF;" text="Continue">
                <font>
                   <Font name="Book Antiqua" size="13.0" />
                </font>
