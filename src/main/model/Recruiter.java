@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recruiter {
@@ -13,6 +14,8 @@ public class Recruiter {
     public Recruiter(String name, String company) {
         this.company = company;
         this.name = name;
+        this.tags = new ArrayList<>();
+        this.postings = new ArrayList<>();
     }
 
     public List<JobPosting> getPostings() {

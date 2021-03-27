@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Volunteer {
@@ -14,6 +15,7 @@ public class Volunteer {
         this.name = name;
         this.age = age;
         this.description = description;
+        this.tags = new ArrayList<>();
     }
 
     public String getDescription() {
