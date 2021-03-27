@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PopulateDatabase {
     public static void main (String []args){
         Connection myConnection = DBConnection.connect();
         try {
-             PopulateRecruiter(myConnection, "James Johnson", "Miami Heat");
+//             PopulateRecruiter(myConnection, "James Johnson", "Miami Heat");
 //            InsertVolunteer(myConnection, "Louis Hamilton", "7");
 //            InsertVolunteer(myConnection, "Toto Wolff", "33");
 //            AddJobPosting(myConnection, "Software Developer", "Google", "Vancouver");
@@ -26,6 +28,15 @@ public class PopulateDatabase {
 //            VolunteerRequest(myConnection,"1", "3");
 //            RecruiterAssignJob(myConnection, "1", "2");
             VolunteerViewAssigned(myConnection, "2");
+            List<String> jobTitles = getJobTitles(myConnection);
+            System.out.println(jobTitles);
+            List<String> companies = getCompanies(myConnection);
+            System.out.println(companies);
+            List<String> regions = getRegions(myConnection);
+            System.out.println(regions);
+            List<String> tagCategories = getTags(myConnection);
+            System.out.println(tagCategories);
+
         } catch (SQLException e){
             System.out.print(e);
         }
@@ -56,8 +67,6 @@ public class PopulateDatabase {
     }
 
     public static void AddJobPosting(Connection con, String arg1, String arg2, String arg3) throws SQLException{
-        // TODO Make sure that the table name lines up with GUI entry fields
-
         Statement myStatement = con.createStatement();
         int tableSize = CountTuples(con, "JobPostings");
         tableSize++;
@@ -124,7 +133,7 @@ public class PopulateDatabase {
     public static void RecruiterSearch (Connection con, String arg1) throws SQLException{
         Statement myStatement = con.createStatement();
         String sql = "SELECT Volunteer.volunteerID, Volunteer.volunteerName, Volunteer.age, Volunteer.description" +
-                     " FROM JobRequests, Volunteer WHERE JobRequests.volunteerID = Volunteer.volunteerID AND JobRequests.jobID = ";
+                " FROM JobRequests, Volunteer WHERE JobRequests.volunteerID = Volunteer.volunteerID AND JobRequests.jobID = ";
         sql = sql + arg1;
         ResultSet rs = myStatement.executeQuery(sql);
 
@@ -175,10 +184,49 @@ public class PopulateDatabase {
         }
     }
 
-//    SELECT Volunteer.volunteerID, Volunteer.volunteerName, Volunteer.age, Volunteer.description
-//    FROM JobRequests, Volunteer
-//    WHERE JobRequests.volunteerID = Volunteer.volunteerID
-//    AND JobRequests.jobID = 1
+    public static List<String> getJobTitles(Connection con) throws SQLException {
+        List<String> jobTitles = new ArrayList<String>();
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT DISTINCT JobPostings.jobTitle FROM JobPostings";
+        ResultSet rs = myStatement.executeQuery(sql);
+        while(rs.next()){
+            jobTitles.add(rs.getString(1));
+        }
+        return jobTitles;
+    }
+
+    public static List<String> getCompanies(Connection con) throws SQLException {
+        List<String> companyNames = new ArrayList<String>();
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT DISTINCT JobPostings.companyName FROM JobPostings";
+        ResultSet rs = myStatement.executeQuery(sql);
+        while(rs.next()){
+            companyNames.add(rs.getString(1));
+        }
+        return companyNames;
+    }
+
+    public static List<String> getRegions(Connection con) throws SQLException {
+        List<String> regions = new ArrayList<String>();
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT DISTINCT JobPostings.location FROM JobPostings";
+        ResultSet rs = myStatement.executeQuery(sql);
+        while(rs.next()){
+            regions.add(rs.getString(1));
+        }
+        return regions;
+    }
+
+    public static List<String> getTags(Connection con) throws SQLException {
+        List<String> tagCategories = new ArrayList<String>();
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT DISTINCT TagsName.tagName FROM TagsName";
+        ResultSet rs = myStatement.executeQuery(sql);
+        while(rs.next()){
+            tagCategories.add(rs.getString(1));
+        }
+        return tagCategories;
+    }
 
     public static int CountTuples(Connection con, String arg1){
         int size = 0;
