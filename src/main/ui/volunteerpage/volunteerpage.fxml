@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="125.0" fitWidth="125.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@v.png" />
+                  <Image url="@volunteerpageone/v.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="192.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volunteer!">
@@ -48,11 +48,12 @@
                </font>
             </Text>
             <TextField fx:id="describe" layoutX="249.0" layoutY="247.0" prefHeight="29.0" prefWidth="208.0" promptText="Business Grad from UoT" />
-            <Button fx:id="conti" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #3555FF;" text="Continue">
+            <Button fx:id="conti" layoutX="297.0" layoutY="312.0" mnemonicParsing="false" onAction="#moveToPageOne" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #3555FF;" text="Continue">
                <font>
                   <Font name="Book Antiqua" size="13.0" />
                </font>
             </Button>
          </children></AnchorPane>
+       <Button fx:id="back" layoutX="787.0" layoutY="648.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="29.0" prefWidth="73.0" text="Back" />
    </children>
 </AnchorPane>

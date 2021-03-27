@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.volunteerpage.VolunteerPageController">
+   <children>
+      <AnchorPane prefHeight="150.0" prefWidth="900.0" style="-fx-background-color: #2B9C7A;">
+         <children>
+            <ImageView fitHeight="125.0" fitWidth="125.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@v.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="192.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volunteer!">
+               <font>
+                  <Font name="Book Antiqua" size="60.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="231.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help the community, have fun and improve your Resume!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="219.0" prefHeight="251.0" prefWidth="415.0" style="-fx-background-color: #637CD6;">
+         <children>
+            <ChoiceBox layoutX="27.0" layoutY="54.0" prefWidth="150.0" />
+            <Text fill="WHITE" layoutX="27.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Region" />
+            <ChoiceBox layoutX="238.0" layoutY="54.0" prefWidth="150.0" />
+            <Text fill="WHITE" layoutX="238.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Company" />
+            <ChoiceBox layoutX="27.0" layoutY="124.0" prefWidth="150.0" />
+            <Text fill="WHITE" layoutX="27.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Job Title" />
+            <ChoiceBox layoutX="238.0" layoutY="124.0" prefWidth="150.0" />
+            <Text fill="WHITE" layoutX="238.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Tags" />
+            <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3555FF;" text="Search">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button layoutX="91.0" layoutY="524.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="273.0" text="Requested Jobs">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="91.0" layoutY="597.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="273.0" text="Assigned Jobs">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="448.0" layoutY="165.0" prefHeight="519.0" prefWidth="436.0" style="-fx-background-color: #EF6969;">
+         <children>
+            <Text fill="WHITE" layoutX="30.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Jobs in this Region:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
