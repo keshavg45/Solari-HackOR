@@ -12,11 +12,11 @@ public class PopulateDatabase {
 //            PopulateRecruiter(myConnection, "James Johnson", "Miami Heat");
 //            InsertVolunteer(myConnection, "Louis Hamilton", "7");
 //            InsertVolunteer(myConnection, "Toto Wolff", "33");
-            AddJobPosting(myConnection, "Software Developer", "Google", "Vancouver");
+//            AddJobPosting(myConnection, "Author", "Oracle", "Vancouver");
 //            UpdateJobPosting(myConnection, "7");
-            VolunteerSearch(myConnection, "Software Developer", "", "", "");
+//            VolunteerSearch(myConnection, "Author", "", "", "");
 //            VolunteerSearch(myConnection, "", "Google", "", "");
-//            VolunteerSearch(myConnection, "", "", "Vancouver", "");
+            VolunteerSearch(myConnection, "", "", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "Google", "", "");
 //            VolunteerSearch(myConnection, "", "Google", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "", "Vancouver", "");
@@ -48,10 +48,10 @@ public class PopulateDatabase {
 
     public static void AddJobPosting(Connection con, String arg1, String arg2, String arg3) throws SQLException{
         Statement myStatement = con.createStatement();
-        int tableSize = CountTuples(con, "Volunteer");
+        int tableSize = CountTuples(con, "JobPostings");
         tableSize++;
         String sql = "INSERT INTO JobPostings (jobID, jobTitle, companyName, location, statusActive) VALUES (" + tableSize + ", '" + arg1 + "', '" + arg2 + "', '" + arg3 + "', 1)";
-        //System.out.println(sql);
+        System.out.println(sql);
         int rs = myStatement.executeUpdate(sql);
 
         System.out.println("Successfully Added new Job Posting!");
@@ -98,7 +98,7 @@ public class PopulateDatabase {
         ResultSet rs = myStatement.executeQuery(sql);
         System.out.println("Job Options:");
         while (rs.next()){
-            System.out.println("Job Title: " + rs.getString(1) + ", Company Name: " + rs.getString(2) + ", Location: " + rs.getString(3));
+            System.out.println("Job Title: " + rs.getString(2) + ", Company Name: " + rs.getString(3) + ", Location: " + rs.getString(4));
         }
     }
 //
