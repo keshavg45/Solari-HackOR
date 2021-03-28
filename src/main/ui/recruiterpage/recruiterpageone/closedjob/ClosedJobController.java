@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.JobPosting;
+import ui.MainGUI;
 import ui.recruiterpage.recruiterpageone.RecruiterPageOneController;
 
 import java.io.IOException;
@@ -24,6 +27,7 @@ import java.util.List;
 public class ClosedJobController {
 
     public Button back;
+    public Button viewVolunteers;
     public Label companyLabel;
 
     public ListView<String> closedJobs;
@@ -50,7 +54,21 @@ public class ClosedJobController {
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
             backButtonClicked(event);
+        } else if (event.getSource() == viewVolunteers) {
+            showVolunteers();
         }
+    }
+
+    public void showVolunteers() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/recruiterpage/recruiterpageone/closedjob/viewvolunteerspopup/viewvolunteerspopup.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage window = new Stage();
+        window.getIcons().add(new Image(MainGUI.class.getResourceAsStream("logo.png")));
+        window.setTitle("Volunteers");
+        window.setScene(scene);
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.show();
     }
 
     public void backButtonClicked(ActionEvent event) throws IOException {
