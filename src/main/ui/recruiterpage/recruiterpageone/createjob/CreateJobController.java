@@ -56,13 +56,13 @@ public class CreateJobController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/recruiterpage/recruiterpageone/" +
                 "recruiterpageone.fxml"));
         Parent parent = loader.load();
+        RecruiterPageOneController recruiterPageOneController = (RecruiterPageOneController)loader.getController();
+        recruiterPageOneController.setTopLabel(companyLabel.getText());
         Scene scene = new Scene(parent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
         DBConnection.disconnect(myConnection);
-        RecruiterPageOneController recruiterPageOneController = (RecruiterPageOneController)loader.getController();
-        recruiterPageOneController.setTopLabel(companyLabel.getText());
 
     }
 

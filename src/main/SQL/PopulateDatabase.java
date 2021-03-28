@@ -1,5 +1,6 @@
 package SQL;
 
+import model.JobPosting;
 import model.Volunteer;
 
 import java.sql.Connection;
@@ -22,7 +23,7 @@ public class PopulateDatabase {
 //            VolunteerSearch(myConnection, "", "Google", "", "");
 //            VolunteerSearch(myConnection, "", "", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "Google", "", "");
-//            VolunteerSearch(myConnection, "", "Google", "Vancouver", "");
+            VolunteerSearch(myConnection, "", "Gppgle", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "Google", "Vancouver", "");
 //            DeleteJobPosting(myConnection, "4");
@@ -44,9 +45,9 @@ public class PopulateDatabase {
 //            JobTags.add("Fashion");
 //            JobTags.add("Health");
 //            addJobTags(myConnection, JobTags, "2");
-            List<Volunteer> example = new ArrayList<>();
-            example = MakeVolunteerObjects(myConnection);
-            System.out.println(example);
+//            List<Volunteer> example = new ArrayList<>();
+//            example = MakeVolunteerObjects(myConnection);
+//            System.out.println(example);
 
         } catch (SQLException e){
             System.out.print(e);
@@ -297,5 +298,17 @@ public class PopulateDatabase {
             volunteers.add(temp);
         }
         return volunteers;
+    }
+
+    public static List<JobPosting> MakeJobPostingObjects(Connection con) throws SQLException{
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT * FROM JobPostings";
+        ResultSet rs = myStatement.executeQuery(sql);
+        List<JobPosting> jobPostings = new ArrayList<>();
+        while(rs.next()){
+            JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+            jobPostings.add(temp);
+        }
+        return jobPostings;
     }
 }

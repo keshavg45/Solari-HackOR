@@ -7,11 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import model.JobPosting;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class VolunteerPageOneController {
 
@@ -31,11 +34,29 @@ public class VolunteerPageOneController {
     public TextField describe;
     public Button requested;
     public Button assigned;
+    public Button requestJob;
+
+    public ListView<String> availableJobs;
+    public List<JobPosting> jobPostings;
+
 
     Connection myConnection = DBConnection.connect();
 
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException {
+        availableJobs = new ListView();
+        jobPostings = SQL.PopulateDatabase.MakeJobPostingObjects(myConnection);
+
+//        for (JobPosting j : jobPostings) {
+//            availableJobs.getItems().add(j.getRole() + "\n" + j.getCompany() + "\n" + j.getLocation());
+//        }
+
+//        for (JobPosting j : jobPostings) {
+//            availableJobs.getItems().add(j.getRole() + "\n" + j.getCompany() + "\n" + j.getLocation());
+//            System.out.println(j.getRole() + "\n" + j.getCompany() + "\n" + j.getLocation());
+//        }
+
+
         String st1[] = new String[0];
         String st2[] = new String[0];
         String st3[] = new String[0];
@@ -85,5 +106,9 @@ public class VolunteerPageOneController {
             }
 
         }
+    }
+
+    public void showAvailableJobs() {
+
     }
 }

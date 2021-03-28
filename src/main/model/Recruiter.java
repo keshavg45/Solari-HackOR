@@ -11,7 +11,8 @@ public class Recruiter {
     private List<String> tags;
     private List<JobPosting> postings;
 
-    public Recruiter(String name, String company) {
+    public Recruiter(int RecruiterID, String name, String company) {
+        this.RecruiterID = RecruiterID;
         this.company = company;
         this.name = name;
         this.tags = new ArrayList<>();
