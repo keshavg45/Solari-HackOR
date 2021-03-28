@@ -19,6 +19,7 @@ public class PopulateDatabase {
 //            InsertVolunteer(myConnection, "Toto Wolff", "33");
 //            AddJobPosting(myConnection, "Software Developer", "Google", "Vancouver");
             UpdateJobPosting(myConnection, "7");
+            UpdateJobPosting(myConnection, "11");
 //            VolunteerSearch(myConnection, "Software Developer", "", "", "");
 //            VolunteerSearch(myConnection, "", "Google", "", "");
 //            VolunteerSearch(myConnection, "", "", "Vancouver", "");

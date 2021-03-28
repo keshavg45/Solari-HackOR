@@ -57,6 +57,7 @@ public class RecruiterPageOneController {
             ClosedJobController closedController = (ClosedJobController)loader.getController();
             closedController.setTopLabel(companyLabel.getText());
             closedController.getClosedPostings();
+            closedController.displayClosedPostings();
         }
         Scene scene = new Scene(courseParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
