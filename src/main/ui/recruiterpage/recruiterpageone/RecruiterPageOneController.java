@@ -53,6 +53,7 @@ public class RecruiterPageOneController {
             ManageJobController manageController = (ManageJobController)loader.getController();
             manageController.setTopLabel(companyLabel.getText());
             manageController.getOpenPostings();
+            manageController.displayOpenPostings();
         }  else if (string == "closedjob") {
             ClosedJobController closedController = (ClosedJobController)loader.getController();
             closedController.setTopLabel(companyLabel.getText());
