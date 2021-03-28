@@ -5,7 +5,12 @@ import SQL.PopulateDatabase;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.JobPosting;
 
 import java.io.IOException;
@@ -82,6 +87,7 @@ public class VolunteerPageOneController {
         if (event.getSource() == requested) {
 //            System.out.println("list of requested jobs");
             //The only input here should be the volunteer's ID, need to figure out how to pass this from volunteerpage
+            showRequestedJobs();
             try {
                 PopulateDatabase.VolunteerViewRequests(myConnection, "1");
             } catch (SQLException throwables) {
@@ -89,6 +95,7 @@ public class VolunteerPageOneController {
             }
         } else if (event.getSource() == assigned) {
 //            System.out.println("list of assigned jobs");
+            showAssignedJobs();
             try {
                 PopulateDatabase.VolunteerViewAssigned(myConnection,"2");
             } catch (SQLException throwables) {
@@ -101,6 +108,27 @@ public class VolunteerPageOneController {
             requestJob();
         }
     }
+
+    public void showRequestedJobs() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/volunteerpage/volunteerpageone/requestedjobspopup/requestedjobspopup.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage window = new Stage();
+        window.setScene(scene);
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.show();
+    }
+
+    public void showAssignedJobs() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/volunteerpage/volunteerpageone/assignedjobspopup/assignedjobspopup.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage window = new Stage();
+        window.setScene(scene);
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.show();
+    }
+
 
     public void searchJob(){
         try {
