@@ -126,4 +126,8 @@ public class VolunteerPageOneController {
             throwables.printStackTrace();
         }
     }
+
+    public void setTopLabel(String text) {
+        VolunteerID.setText(text);
+    }
 }

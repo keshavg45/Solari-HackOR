@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ui.volunteerpage.volunteerpageone.VolunteerPageOneController;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -39,7 +40,6 @@ public class VolunteerPageController {
             } catch (SQLException e) {
                 System.out.println(e);
             }
-
             moveToPageOne(event);
         }
     }
@@ -54,8 +54,12 @@ public class VolunteerPageController {
     }
 
     public void moveToPageOne(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/ui/volunteerpage/volunteerpageone/volunteerpageone.fxml"));
-        Scene scene = new Scene(parent);
+        int tableSize = PopulateDatabase.CountTuples(myConnection, "Volunteer");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/volunteerpage/volunteerpageone/volunteerpageone.fxml"));
+        Parent courseParent = loader.load();
+        VolunteerPageOneController controller = (VolunteerPageOneController) loader.getController();
+        controller.setTopLabel("Volunteer ID: " + (tableSize));
+        Scene scene = new Scene(courseParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
