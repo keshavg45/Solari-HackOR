@@ -2,12 +2,14 @@ package ui.recruiterpage.recruiterpageone.closedjob;
 
 import SQL.DBConnection;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import ui.recruiterpage.recruiterpageone.RecruiterPageOneController;
 
@@ -22,9 +24,17 @@ import java.util.List;
 public class ClosedJobController {
 
     public Button back;
-    public Label companyLabel = new Label("Google");
+    public Label companyLabel;
+
+    public ListView<String> closedJobs;
+    public List<String> closedJobPostings;
 
     Connection myConnection = DBConnection.connect();
+
+    @FXML
+    private void initialize() throws SQLException {
+
+    }
 
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
@@ -50,7 +60,7 @@ public class ClosedJobController {
         companyLabel.setText(text);
     }
 
-    public void getClosedPostings() {
+    public List<String> getClosedPostings() {
         List<String> closedPostings = new ArrayList<>();
 
         try {
@@ -68,7 +78,9 @@ public class ClosedJobController {
             throwables.printStackTrace();
         }
 
+        System.out.println("THIS IS CLOSED POSTINGS");
         System.out.println(closedPostings);
+        return closedPostings;
     }
 
 
