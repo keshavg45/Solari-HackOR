@@ -95,18 +95,34 @@ public class VolunteerPageOneController {
                 throwables.printStackTrace();
             }
         } else if (event.getSource() == search) {
-            try {
-                PopulateDatabase.VolunteerSearch(myConnection,
-                        (String) searchByJobTitle.getValue(),          // Casting objects from .getValue to String
-                        (String) searchByCompany.getValue(),
-                        (String) searchByRegion.getValue(),
-                        (String) searchByTag.getValue());
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            searchJob();
 
         } else if (event.getSource() == requestJob) {
             requestJob();
+        }
+    }
+
+    public void searchJob(){
+        try {
+            jobPostings = PopulateDatabase.VolunteerSearch(myConnection,
+                    (String) searchByJobTitle.getValue(),          // Casting objects from .getValue to String
+                    (String) searchByCompany.getValue(),
+                    (String) searchByRegion.getValue(),
+                    (String) searchByTag.getValue());
+
+            availableJobs.getItems().clear();
+            System.out.println(jobPostings);
+            for (int i = 0; i < jobPostings.size(); i++) {
+                availableJobs.getItems().add(jobPostings.get(i).getRole() +
+                        "\n" + jobPostings.get(i).getCompany() +
+                        "\n" + jobPostings.get(i).getLocation());
+
+                System.out.println(jobPostings.get(i).getRole() + " " +
+                        jobPostings.get(i).getCompany() + " " +
+                        jobPostings.get(i).getLocation());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 

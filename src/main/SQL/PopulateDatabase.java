@@ -106,14 +106,15 @@ public class PopulateDatabase {
         System.out.println("Successfully deleted a Job Posting!");
     }
 
-    public static void VolunteerSearch (Connection con, String arg1, String arg2, String arg3, String arg4) throws SQLException{
+    public static List<JobPosting> VolunteerSearch (Connection con, String arg1, String arg2, String arg3, String arg4) throws SQLException{
         Statement myStatement = con.createStatement();
         String sql = "SELECT * FROM JobPostings WHERE ";
+        List<JobPosting> jobPostings = new ArrayList<>();
         int currentLength = sql.length();
-        if (arg1.length() != 0){
+        if (arg1 !=null){
             sql = sql + "jobTitle = '" + arg1 + "'";
         }
-        if (arg2.length() != 0){
+        if (arg2 != null){
             if (sql.length() != currentLength) {
                 currentLength = sql.length();
                 sql = sql + " AND companyName = '" + arg2 + "'";
@@ -121,7 +122,7 @@ public class PopulateDatabase {
                 sql = sql + "companyName = '" + arg2 + "'";
             }
         }
-        if (arg3.length() != 0){
+        if (arg3 !=null){
             if (sql.length() != currentLength) {
                 currentLength = sql.length();
                 sql = sql + " AND location = '" + arg3 + "'";
@@ -136,10 +137,11 @@ public class PopulateDatabase {
         }
         System.out.println(sql);
         ResultSet rs = myStatement.executeQuery(sql);
-        while (rs.next()){
-            System.out.println("Job Options:");
-            System.out.println("Job Title: " + rs.getString(1) + ", Company Name: " + rs.getString(2) + ", Location: " + rs.getString(3));
+        while(rs.next()){
+            JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+            jobPostings.add(temp);
         }
+        return jobPostings;
     }
 
     public static void RecruiterSearch (Connection con, String arg1) throws SQLException{
