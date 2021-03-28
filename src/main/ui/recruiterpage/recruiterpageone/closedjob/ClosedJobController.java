@@ -1,6 +1,7 @@
 package ui.recruiterpage.recruiterpageone.closedjob;
 
 import SQL.DBConnection;
+import SQL.PopulateDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,8 +14,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.JobPosting;
+import model.Volunteer;
 import ui.MainGUI;
 import ui.recruiterpage.recruiterpageone.RecruiterPageOneController;
+import ui.recruiterpage.recruiterpageone.closedjob.viewvolunteerspopup.ViewVolunteersPopUpController;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -32,6 +35,7 @@ public class ClosedJobController {
 
     public ListView<String> closedJobs;
     public List<JobPosting> closedJobPostings;
+    public List<Volunteer> volunteers;
 
     Connection myConnection = DBConnection.connect();
 
@@ -69,6 +73,9 @@ public class ClosedJobController {
         window.setScene(scene);
         window.initModality(Modality.APPLICATION_MODAL);
         window.show();
+        int JobID = closedJobPostings.get(selectedIndex).getJobID();
+        ViewVolunteersPopUpController controller = (ViewVolunteersPopUpController) loader.getController();
+        controller.displayVolunteers(Integer.toString(JobID));
     }
 
     public void backButtonClicked(ActionEvent event) throws IOException {
@@ -121,6 +128,17 @@ public class ClosedJobController {
         return closedPostings;
     }
 
-
+    public void displayVolunteers(String jobID){
+        try {
+            volunteers = PopulateDatabase.RecruiterViewVoluntees(myConnection, jobID);
+            for (int i = 0; i < volunteers.size(); i++) {
+                closedJobs.getItems().add(volunteers.get(i).getName() +
+                        "\n" + volunteers.get(i).getAge() +
+                        "\n" + volunteers.get(i).getDescription());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 }

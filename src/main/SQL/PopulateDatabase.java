@@ -188,6 +188,22 @@ public class PopulateDatabase {
         return volunteers;
     }
 
+    public static List<Volunteer> RecruiterViewVoluntees (Connection con, String arg1) throws SQLException{
+        Statement myStatement = con.createStatement();
+        List<Volunteer> volunteers = new ArrayList();
+        String sql = "SELECT Volunteer.volunteerID, Volunteer.volunteerName, Volunteer.age, Volunteer.description" +
+                " FROM JobAssigned, Volunteer WHERE JobAssigned.volunteerID = Volunteer.volunteerID AND JobAssigned.jobID = ";
+        sql = sql + arg1;
+        ResultSet rs = myStatement.executeQuery(sql);
+
+        System.out.println("Voluntees Interested in Job");
+        while(rs.next()){
+            Volunteer temp = new Volunteer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+            volunteers.add(temp);
+        }
+        return volunteers;
+    }
+
     public static void VolunteerRequest(Connection con, String arg1, String arg2) throws SQLException{
         Statement myStatement = con.createStatement();
         String sql = "INSERT INTO JobRequests (jobID, volunteerID) VALUES (" + arg1 + ", " + arg2+ ")";
