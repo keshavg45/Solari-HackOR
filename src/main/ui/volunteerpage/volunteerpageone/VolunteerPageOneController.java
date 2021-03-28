@@ -14,6 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.JobPosting;
 import ui.MainGUI;
+import ui.volunteerpage.volunteerpageone.assignedjobspopup.AssignedJobsPopUpController;
+import ui.volunteerpage.volunteerpageone.requestedjobspopup.RequestedJobsPopUpController;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -121,6 +123,10 @@ public class VolunteerPageOneController {
         window.setScene(scene);
         window.initModality(Modality.APPLICATION_MODAL);
         window.show();
+        String s = VolunteerID.getText();
+        s = s.substring(14);
+        RequestedJobsPopUpController controller = (RequestedJobsPopUpController) loader.getController();
+        controller.displayRequestedJobs(s);
     }
 
     public void showAssignedJobs() throws IOException {
@@ -133,6 +139,10 @@ public class VolunteerPageOneController {
         window.setScene(scene);
         window.initModality(Modality.APPLICATION_MODAL);
         window.show();
+        String s = VolunteerID.getText();
+        s = s.substring(14);
+        AssignedJobsPopUpController controller = (AssignedJobsPopUpController) loader.getController();
+        controller.displayAssignedJobs(s);
     }
 
 

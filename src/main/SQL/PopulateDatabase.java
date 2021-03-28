@@ -24,7 +24,7 @@ public class PopulateDatabase {
 //            VolunteerSearch(myConnection, "", "Google", "", "");
 //            VolunteerSearch(myConnection, "", "", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "Google", "", "");
-            VolunteerSearch(myConnection, "", "Gppgle", "Vancouver", "");
+//            VolunteerSearch(myConnection, "", "Gppgle", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "", "Vancouver", "");
 //            VolunteerSearch(myConnection, "Software Developer", "Google", "Vancouver", "");
 //            DeleteJobPosting(myConnection, "4");
@@ -32,6 +32,9 @@ public class PopulateDatabase {
 //            VolunteerRequest(myConnection,"1", "3");
 //            RecruiterAssignJob(myConnection, "1", "2");
 //            VolunteerViewAssigned(myConnection, "2");
+            List<JobPosting> test = new ArrayList();
+            test = VolunteerViewRequests(myConnection, "31");
+            System.out.println(test);
 //            List<String> jobTitles = getJobTitles(myConnection);
 //            System.out.println(jobTitles);
 //            List<String> companies = getCompanies(myConnection);
@@ -197,30 +200,30 @@ public class PopulateDatabase {
         int rs = myStatement.executeUpdate(sql);
     }
 
-    public static void VolunteerViewRequests(Connection con, String arg1) throws SQLException{
+    public static List<JobPosting> VolunteerViewRequests(Connection con, String arg1) throws SQLException{
+        List<JobPosting> jobPostings = new ArrayList<>();
         Statement myStatement = con.createStatement();
-        String sql = "SELECT JobPostings.jobTitle, JobPostings.companyName, jobPostings.location FROM JobRequests, JobPostings WHERE JobRequests.jobID = JobPostings.jobID AND JobRequests.volunteerID = " + arg1;
+        String sql = "SELECT JobPostings.jobID, JobPostings.jobTitle, JobPostings.companyName, JobPostings.location, JobPostings.statusActive FROM JobRequests, JobPostings WHERE JobRequests.jobID = JobPostings.jobID AND JobRequests.volunteerID = " + arg1;
         ResultSet rs = myStatement.executeQuery(sql);
         System.out.println("Applied Jobs");
         while (rs.next()){
-            System.out.println("Job Title: " + rs.getString(1));
-            System.out.println("Company Name: " + rs.getString(2));
-            System.out.println("Location: " + rs.getString(3));
-            System.out.println("");
+            JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+            jobPostings.add(temp);
         }
+        return jobPostings;
     }
 
-    public static void VolunteerViewAssigned(Connection con, String arg1) throws SQLException{
+    public static List<JobPosting> VolunteerViewAssigned(Connection con, String arg1) throws SQLException{
+        List<JobPosting> jobPostings = new ArrayList<>();
         Statement myStatement = con.createStatement();
-        String sql = "SELECT JobPostings.jobTitle, JobPostings.companyName, jobPostings.location FROM JobAssigned, JobPostings WHERE JobAssigned.jobID = JobPostings.jobID AND JobAssigned.volunteerID = " + arg1;
+        String sql = "SELECT JobPostings.jobID, JobPostings.jobTitle, JobPostings.companyName, JobPostings.location, JobPostings.statusActive FROM JobAssigned, JobPostings WHERE JobAssigned.jobID = JobPostings.jobID AND JobAssigned.volunteerID = " + arg1;
         ResultSet rs = myStatement.executeQuery(sql);
         System.out.println("Assigned Jobs");
         while (rs.next()){
-            System.out.println("Job Title: " + rs.getString(1));
-            System.out.println("Company Name: " + rs.getString(2));
-            System.out.println("Location: " + rs.getString(3));
-            System.out.println("");
+            JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+            jobPostings.add(temp);
         }
+        return jobPostings;
     }
 
     public static List<String> getJobTitles(Connection con) throws SQLException {
