@@ -39,6 +39,8 @@ public class VolunteerPageOneController {
     public ListView<String> availableJobs;
     public List<JobPosting> jobPostings;
 
+    public int selectedIndex;
+
 
     Connection myConnection = DBConnection.connect();
 
@@ -99,10 +101,18 @@ public class VolunteerPageOneController {
                 throwables.printStackTrace();
             }
 
+        } else if (event.getSource() == requestJob) {
+            requestJob();
         }
     }
 
-    public void showAvailableJobs() {
+    public void selectJob() {
+        selectedIndex = availableJobs.getSelectionModel().getSelectedIndex();
+        System.out.println("Index:" + selectedIndex);
+    }
 
+    public void requestJob() {
+        int VolunteerJobID = jobPostings.get(selectedIndex).getJobID();
+        System.out.println("job number clicked" + selectedIndex);
     }
 }
