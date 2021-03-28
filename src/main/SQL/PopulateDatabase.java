@@ -138,12 +138,32 @@ public class PopulateDatabase {
         System.out.println(sql);
         ResultSet rs = myStatement.executeQuery(sql);
         while(rs.next()){
-            JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
-            jobPostings.add(temp);
+            if (JobHasTag(con, Integer.toString(rs.getInt(1)), arg4)) {
+                JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+                jobPostings.add(temp);
+            }
         }
         return jobPostings;
     }
 
+    public static boolean JobHasTag(Connection con, String arg1, String arg2) {
+        Boolean output = false;
+        try{
+            Statement myStatement = con.createStatement();
+            String sql = "SELECT * FROM JobTags, TagsName WHERE JobTags.tagID = TagsName.tagID AND JobTags.jobID = " + arg1 + " AND TagsName.tagName = '" + arg2 + "'";
+            ResultSet rs = myStatement.executeQuery(sql);
+
+            while (rs.next()){
+                output = true;
+            }
+            System.out.println(sql);
+        } catch (SQLException e){
+            System.out.println(e);
+            return false;
+        }
+        return output;
+
+    }
     public static void RecruiterSearch (Connection con, String arg1) throws SQLException{
         Statement myStatement = con.createStatement();
         String sql = "SELECT Volunteer.volunteerID, Volunteer.volunteerName, Volunteer.age, Volunteer.description" +
