@@ -1,5 +1,7 @@
 package SQL;
 
+import model.Volunteer;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,11 +40,13 @@ public class PopulateDatabase {
 //            System.out.println(tagCategories);
 //            int tagID = getTagNumber(myConnection, "Salary");
 //            System.out.println(tagID);
-            List<String> JobTags = new ArrayList<String>();
-            JobTags.add("Fashion");
-            JobTags.add("Health");
-            addJobTags(myConnection, JobTags, "2");
-
+//            List<String> JobTags = new ArrayList<String>();
+//            JobTags.add("Fashion");
+//            JobTags.add("Health");
+//            addJobTags(myConnection, JobTags, "2");
+            List<Volunteer> example = new ArrayList<>();
+            example = MakeVolunteerObjects(myConnection);
+            System.out.println(example);
 
         } catch (SQLException e){
             System.out.print(e);
@@ -281,5 +285,17 @@ public class PopulateDatabase {
             System.out.println("Error in retrieving table");
         }
         return size;
+    }
+
+    public static List<Volunteer> MakeVolunteerObjects(Connection con) throws SQLException{
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT * FROM Volunteer";
+        ResultSet rs = myStatement.executeQuery(sql);
+        List<Volunteer> volunteers = new ArrayList<>();
+        while(rs.next()){
+            Volunteer temp = new Volunteer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+            volunteers.add(temp);
+        }
+        return volunteers;
     }
 }

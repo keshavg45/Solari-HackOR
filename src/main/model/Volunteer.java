@@ -11,7 +11,8 @@ public class Volunteer {
     private String description;
     private List<String> tags;
 
-    public Volunteer(String name, int age, String description) {
+    public Volunteer(int ID, String name, int age, String description) {
+        this.VolunteerID = ID;
         this.name = name;
         this.age = age;
         this.description = description;
