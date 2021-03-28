@@ -138,7 +138,12 @@ public class PopulateDatabase {
         System.out.println(sql);
         ResultSet rs = myStatement.executeQuery(sql);
         while(rs.next()){
-            if (JobHasTag(con, Integer.toString(rs.getInt(1)), arg4)) {
+            if (arg4 != null) {
+                if (JobHasTag(con, Integer.toString(rs.getInt(1)), arg4)) {
+                    JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+                    jobPostings.add(temp);
+                }
+            } else {
                 JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
                 jobPostings.add(temp);
             }
