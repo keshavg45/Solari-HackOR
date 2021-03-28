@@ -72,7 +72,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="companyLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="652.0" layoutY="53.0" textAlignment="JUSTIFY" textFill="WHITE">
+      <Label fx:id="VolunteerID" alignment="CENTER" contentDisplay="CENTER" layoutX="652.0" layoutY="53.0" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
