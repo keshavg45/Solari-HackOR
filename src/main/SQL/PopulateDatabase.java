@@ -172,8 +172,9 @@ public class PopulateDatabase {
         return output;
 
     }
-    public static void RecruiterSearch (Connection con, String arg1) throws SQLException{
+    public static List<Volunteer> RecruiterSearch (Connection con, String arg1) throws SQLException{
         Statement myStatement = con.createStatement();
+        List<Volunteer> volunteers = new ArrayList();
         String sql = "SELECT Volunteer.volunteerID, Volunteer.volunteerName, Volunteer.age, Volunteer.description" +
                 " FROM JobRequests, Volunteer WHERE JobRequests.volunteerID = Volunteer.volunteerID AND JobRequests.jobID = ";
         sql = sql + arg1;
@@ -181,11 +182,10 @@ public class PopulateDatabase {
 
         System.out.println("Voluntees Interested in Job");
         while(rs.next()){
-            System.out.println("Name: " + rs.getString(2));
-            System.out.println("Age: " + rs.getInt(3));
-            System.out.println("Profile: " + rs.getString(4));
-            System.out.println("");
+            Volunteer temp = new Volunteer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+            volunteers.add(temp);
         }
+        return volunteers;
     }
 
     public static void VolunteerRequest(Connection con, String arg1, String arg2) throws SQLException{
