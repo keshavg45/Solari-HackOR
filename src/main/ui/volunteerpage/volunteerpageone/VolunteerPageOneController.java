@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -41,6 +42,7 @@ public class VolunteerPageOneController {
     public Button requested;
     public Button assigned;
     public Button requestJob;
+    public Button back;
 
     public Label VolunteerID;
 
@@ -110,8 +112,20 @@ public class VolunteerPageOneController {
 
         } else if (event.getSource() == requestJob) {
             requestJob();
+        } else if (event.getSource() == back) {
+            moveToVolunteerPage(event);
         }
     }
+
+    public void moveToVolunteerPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/volunteerpage/volunteerpage.fxml"));
+        Parent courseParent = loader.load();
+        Scene courseScene = new Scene(courseParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(courseScene);
+        window.show();
+    }
+
 
     public void showRequestedJobs() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/volunteerpage/volunteerpageone/requestedjobspopup/requestedjobspopup.fxml"));
