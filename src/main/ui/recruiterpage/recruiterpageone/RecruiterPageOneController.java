@@ -52,9 +52,11 @@ public class RecruiterPageOneController {
         } else if (string == "managejob") {
             ManageJobController manageController = (ManageJobController)loader.getController();
             manageController.setTopLabel(companyLabel.getText());
+            manageController.getOpenPostings();
         }  else if (string == "closedjob") {
             ClosedJobController closedController = (ClosedJobController)loader.getController();
             closedController.setTopLabel(companyLabel.getText());
+            closedController.getClosedPostings();
         }
         Scene scene = new Scene(courseParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
