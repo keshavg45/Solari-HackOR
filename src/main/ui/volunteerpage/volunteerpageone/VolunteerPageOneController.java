@@ -9,9 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.JobPosting;
+import ui.MainGUI;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -114,6 +116,8 @@ public class VolunteerPageOneController {
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
         Stage window = new Stage();
+        window.getIcons().add(new Image(MainGUI.class.getResourceAsStream("logo.png")));
+        window.setTitle("Requested Jobs");
         window.setScene(scene);
         window.initModality(Modality.APPLICATION_MODAL);
         window.show();
@@ -124,6 +128,8 @@ public class VolunteerPageOneController {
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
         Stage window = new Stage();
+        window.getIcons().add(new Image(MainGUI.class.getResourceAsStream("logo.png")));
+        window.setTitle("Assigned Jobs");
         window.setScene(scene);
         window.initModality(Modality.APPLICATION_MODAL);
         window.show();
