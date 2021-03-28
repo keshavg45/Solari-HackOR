@@ -96,7 +96,7 @@ public class ManageJobController {
     public void selectJob() {
         jobSelectedIndex = jobPostings.getSelectionModel().getSelectedIndex();
         System.out.println("Manage Job Index:" + jobSelectedIndex);
-        jobPostings.getItems().clear();
+        volunteersAvailable.getItems().clear();
     }
 
     public void selectVolunteer() {
