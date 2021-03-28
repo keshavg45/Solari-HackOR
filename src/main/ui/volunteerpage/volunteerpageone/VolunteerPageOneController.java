@@ -44,18 +44,12 @@ public class VolunteerPageOneController {
 
     @FXML
     private void initialize() throws SQLException {
-        availableJobs = new ListView();
         jobPostings = SQL.PopulateDatabase.MakeJobPostingObjects(myConnection);
 
-//        for (JobPosting j : jobPostings) {
-//            availableJobs.getItems().add(j.getRole() + "\n" + j.getCompany() + "\n" + j.getLocation());
-//        }
-
-//        for (JobPosting j : jobPostings) {
-//            availableJobs.getItems().add(j.getRole() + "\n" + j.getCompany() + "\n" + j.getLocation());
-//            System.out.println(j.getRole() + "\n" + j.getCompany() + "\n" + j.getLocation());
-//        }
-
+        for (int i = 0; i < jobPostings.size(); i++) {
+            availableJobs.getItems().add(jobPostings.get(i).getRole() + "\n" + jobPostings.get(i).getCompany() + "\n" + jobPostings.get(i).getLocation());
+            System.out.println(jobPostings.get(i).getRole() + " " + jobPostings.get(i).getCompany() + " " + jobPostings.get(i).getLocation());
+        }
 
         String st1[] = new String[0];
         String st2[] = new String[0];

@@ -63,7 +63,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <ListView fx:id="availableJobs" fixedCellSize="100.0" layoutX="22.0" layoutY="59.0" prefHeight="375.0" prefWidth="392.0" />
+            <ListView fx:id="availableJobs" fixedCellSize="75.0" layoutX="22.0" layoutY="59.0" prefHeight="375.0" prefWidth="392.0" />
          </children>
       </AnchorPane>
       <Button fx:id="requestJob" layoutX="568.0" layoutY="636.0" mnemonicParsing="false" onAction="#buttonClick" prefHeight="40.0" prefWidth="197.0" text="Request Job">
