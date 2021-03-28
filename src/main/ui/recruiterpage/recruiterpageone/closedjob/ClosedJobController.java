@@ -2,7 +2,6 @@ package ui.recruiterpage.recruiterpageone.closedjob;
 
 import SQL.DBConnection;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import model.JobPosting;
 import ui.recruiterpage.recruiterpageone.RecruiterPageOneController;
 
 import java.io.IOException;
@@ -27,14 +27,25 @@ public class ClosedJobController {
     public Label companyLabel;
 
     public ListView<String> closedJobs;
-    public List<String> closedJobPostings;
+    public List<JobPosting> closedJobPostings;
 
     Connection myConnection = DBConnection.connect();
 
-    @FXML
-    private void initialize() throws SQLException {
+    public void displayClosedPostings() {
 
+        closedJobPostings = getClosedPostings();
+
+        for (int i = 0; i < closedJobPostings.size(); i++) {
+            closedJobs.getItems().add(closedJobPostings.get(i).getRole() +
+                    "\n" + closedJobPostings.get(i).getCompany() +
+                    "\n" + closedJobPostings.get(i).getLocation());
+
+            System.out.println(closedJobPostings.get(i).getRole() +
+                    "  " + closedJobPostings.get(i).getCompany() +
+                    "  " + closedJobPostings.get(i).getLocation());
+        }
     }
+
 
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
@@ -60,20 +71,29 @@ public class ClosedJobController {
         companyLabel.setText(text);
     }
 
-    public List<String> getClosedPostings() {
-        List<String> closedPostings = new ArrayList<>();
+    public List<JobPosting> getClosedPostings() {
+        List<JobPosting> closedPostings = new ArrayList<>();
 
         try {
             Statement myStatement = myConnection.createStatement();
-            String sql = "SELECT JobPostings.jobTitle FROM JobPostings WHERE JobPostings.statusActive = 0 AND " +
+            String sql = "SELECT * FROM " +
+                    "JobPostings WHERE JobPostings.statusActive = 0 AND " +
                     "JobPostings.companyName = " + "'" + companyLabel.getText() + "'" + "";
 
             System.out.println(sql);
+
             ResultSet rs = myStatement.executeQuery(sql);
 
             while (rs.next()) {
-                closedPostings.add(rs.getString(1));
+                JobPosting temp = new JobPosting(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getBoolean(5));
+
+                closedPostings.add(temp);
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -82,6 +102,7 @@ public class ClosedJobController {
         System.out.println(closedPostings);
         return closedPostings;
     }
+
 
 
 }

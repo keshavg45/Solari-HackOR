@@ -47,8 +47,13 @@ public class VolunteerPageOneController {
         jobPostings = SQL.PopulateDatabase.MakeJobPostingObjects(myConnection);
 
         for (int i = 0; i < jobPostings.size(); i++) {
-            availableJobs.getItems().add(jobPostings.get(i).getRole() + "\n" + jobPostings.get(i).getCompany() + "\n" + jobPostings.get(i).getLocation());
-            System.out.println(jobPostings.get(i).getRole() + " " + jobPostings.get(i).getCompany() + " " + jobPostings.get(i).getLocation());
+            availableJobs.getItems().add(jobPostings.get(i).getRole() +
+                    "\n" + jobPostings.get(i).getCompany() +
+                    "\n" + jobPostings.get(i).getLocation());
+
+            System.out.println(jobPostings.get(i).getRole() + " " +
+                    jobPostings.get(i).getCompany() + " " +
+                    jobPostings.get(i).getLocation());
         }
 
         String st1[] = new String[0];
