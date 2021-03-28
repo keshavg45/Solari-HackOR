@@ -18,8 +18,8 @@ public class PopulateDatabase {
 //            InsertVolunteer(myConnection, "Louis Hamilton", "7");
 //            InsertVolunteer(myConnection, "Toto Wolff", "33");
 //            AddJobPosting(myConnection, "Software Developer", "Google", "Vancouver");
-            UpdateJobPosting(myConnection, "7");
-            UpdateJobPosting(myConnection, "11");
+//            UpdateJobPosting(myConnection, "7");
+//            UpdateJobPosting(myConnection, "11");
 //            VolunteerSearch(myConnection, "Software Developer", "", "", "");
 //            VolunteerSearch(myConnection, "", "Google", "", "");
 //            VolunteerSearch(myConnection, "", "", "Vancouver", "");
@@ -49,7 +49,6 @@ public class PopulateDatabase {
 //            List<Volunteer> example = new ArrayList<>();
 //            example = MakeVolunteerObjects(myConnection);
 //            System.out.println(example);
-
         } catch (SQLException e){
             System.out.print(e);
         }

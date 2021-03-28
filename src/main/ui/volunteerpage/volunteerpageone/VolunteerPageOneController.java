@@ -5,10 +5,7 @@ import SQL.PopulateDatabase;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.JobPosting;
 
 import java.io.IOException;
@@ -35,6 +32,8 @@ public class VolunteerPageOneController {
     public Button requested;
     public Button assigned;
     public Button requestJob;
+
+    public Label VolunteerID;
 
     public ListView<String> availableJobs;
     public List<JobPosting> jobPostings;
@@ -117,7 +116,14 @@ public class VolunteerPageOneController {
     }
 
     public void requestJob() {
-        int VolunteerJobID = jobPostings.get(selectedIndex).getJobID();
+        int JobID = jobPostings.get(selectedIndex).getJobID();
         System.out.println("job number clicked" + selectedIndex);
+        String s = VolunteerID.getText();
+        s = s.substring(14);
+        try {
+            PopulateDatabase.VolunteerRequest(myConnection, Integer.toString(JobID), s);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
