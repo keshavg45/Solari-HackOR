@@ -37,6 +37,8 @@ public class ClosedJobController {
     public List<JobPosting> closedJobPostings;
     public List<Volunteer> volunteers;
 
+    public int selectedIndex;
+
     Connection myConnection = DBConnection.connect();
 
     public void displayClosedPostings() {
@@ -139,6 +141,11 @@ public class ClosedJobController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void selectJob() {
+        selectedIndex = closedJobs.getSelectionModel().getSelectedIndex();
+//        System.out.println("Index:" + selectedIndex);
     }
 
 }
