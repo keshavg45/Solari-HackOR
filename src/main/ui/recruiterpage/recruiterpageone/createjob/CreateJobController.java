@@ -37,11 +37,11 @@ public class CreateJobController {
             backButtonClicked(event);
         } else if (event.getSource() == addJob) {
             try {
-
                 PopulateDatabase.AddJobPosting(myConnection, jobTitle.getText(), companyLabel.getText(), loc.getText());
                 List<String> tagsList = createTagsList(tag.getText());
                 int mostRecent = PopulateDatabase.CountTuples(myConnection, "JobPostings");
                 PopulateDatabase.addJobTags(myConnection, tagsList, Integer.toString(mostRecent));
+
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

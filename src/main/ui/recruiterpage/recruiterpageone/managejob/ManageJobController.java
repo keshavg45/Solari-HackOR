@@ -1,5 +1,6 @@
 package ui.recruiterpage.recruiterpageone.managejob;
 
+import SQL.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,11 +12,19 @@ import javafx.stage.Stage;
 import ui.recruiterpage.recruiterpageone.RecruiterPageOneController;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageJobController {
 
     public Button back;
     public Label companyLabel;
+
+    Connection myConnection = DBConnection.connect();
 
     public void buttonClick(ActionEvent event) throws IOException {
         if (event.getSource() == back) {
@@ -39,5 +48,26 @@ public class ManageJobController {
 
     public void setTopLabel(String text) {
         companyLabel.setText(text);
+    }
+
+    public void getOpenPostings() {
+        List<String> openPostings = new ArrayList<>();
+
+        try {
+            Statement myStatement = myConnection.createStatement();
+            String sql = "SELECT JobPostings.jobTitle FROM JobPostings WHERE JobPostings.statusActive = 1 AND " +
+                    "JobPostings.companyName = " + "'" + companyLabel.getText() + "'" + "";
+
+            System.out.println(sql);
+            ResultSet rs = myStatement.executeQuery(sql);
+
+            while (rs.next()) {
+                openPostings.add(rs.getString(1));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        System.out.println(openPostings);
     }
 }
