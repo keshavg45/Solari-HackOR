@@ -56,7 +56,7 @@ public class VolunteerPageOneController {
 
     @FXML
     private void initialize() throws SQLException {
-        jobPostings = SQL.PopulateDatabase.MakeJobPostingObjects(myConnection);
+        jobPostings = SQL.PopulateDatabase.makeAvailableJobPostingObjects(myConnection);
 
         for (int i = 0; i < jobPostings.size(); i++) {
             availableJobs.getItems().add(jobPostings.get(i).getRole() +
@@ -170,6 +170,7 @@ public class VolunteerPageOneController {
 
             availableJobs.getItems().clear();
             System.out.println(jobPostings);
+
             for (int i = 0; i < jobPostings.size(); i++) {
                 availableJobs.getItems().add(jobPostings.get(i).getRole() +
                         "\n" + jobPostings.get(i).getCompany() +

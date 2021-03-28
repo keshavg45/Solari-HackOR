@@ -14,7 +14,7 @@ public class PopulateDatabase {
     public static void main (String []args){
         Connection myConnection = DBConnection.connect();
         try {
-//             PopulateRecruiter(myConnection, "James Johnson", "Miami Heat");
+//            PopulateRecruiter(myConnection, "James Johnson", "Miami Heat");
 //            InsertVolunteer(myConnection, "Louis Hamilton", "7");
 //            InsertVolunteer(myConnection, "Toto Wolff", "33");
 //            AddJobPosting(myConnection, "Software Developer", "Google", "Vancouver");
@@ -32,6 +32,17 @@ public class PopulateDatabase {
 //            VolunteerRequest(myConnection,"1", "3");
 //            RecruiterAssignJob(myConnection, "1", "2");
 //            VolunteerViewAssigned(myConnection, "2");
+
+            UpdateJobPosting(myConnection, "1");
+            UpdateJobPosting(myConnection, "2");
+            UpdateJobPosting(myConnection, "3");
+            UpdateJobPosting(myConnection, "4");
+            UpdateJobPosting(myConnection, "5");
+            UpdateJobPosting(myConnection, "6");
+            UpdateJobPosting(myConnection, "7");
+
+
+
             List<JobPosting> test = new ArrayList();
             test = VolunteerViewRequests(myConnection, "31");
             System.out.println(test);
@@ -349,6 +360,18 @@ public class PopulateDatabase {
     public static List<JobPosting> MakeJobPostingObjects(Connection con) throws SQLException{
         Statement myStatement = con.createStatement();
         String sql = "SELECT * FROM JobPostings";
+        ResultSet rs = myStatement.executeQuery(sql);
+        List<JobPosting> jobPostings = new ArrayList<>();
+        while(rs.next()){
+            JobPosting temp = new JobPosting(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5));
+            jobPostings.add(temp);
+        }
+        return jobPostings;
+    }
+
+    public static List<JobPosting> makeAvailableJobPostingObjects(Connection con) throws SQLException{
+        Statement myStatement = con.createStatement();
+        String sql = "SELECT * FROM JobPostings WHERE JobPostings.statusActive = 1";
         ResultSet rs = myStatement.executeQuery(sql);
         List<JobPosting> jobPostings = new ArrayList<>();
         while(rs.next()){
