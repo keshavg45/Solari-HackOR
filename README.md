@@ -1,5 +1,5 @@
 # Solari
-by Keshav, William, and Yajas
+by Keshav, William (rafa3l389@gmail.com/ pochlax), and Yajas
 
 ## Why is Solari? 
 
